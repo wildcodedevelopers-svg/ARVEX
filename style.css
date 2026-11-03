@@ -34,3 +34,6 @@
   .mobile-nav .nav-link.active{background:#a855f71c;color:#e0c5ff}
   .main-content{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
 }
+
+/* Projects */
+.dialog-card select{width:100%;border:1px solid var(--line);border-radius:8px;background:#0b0712;color:white;padding:11px;outline:none}.project-status{text-transform:capitalize;padding:4px 8px;border-radius:20px;background:#a855f71c;color:#d7b5ff}.status-completed{background:#5bd6a01c;color:#5bd6a0}.status-on_hold{background:#f4bd631c;color:#f4bd63}
