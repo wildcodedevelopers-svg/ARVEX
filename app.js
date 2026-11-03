@@ -4,7 +4,7 @@
 
 const ARVEX_CONFIG = {
   supabaseUrl: "https://tblygovkphxslmcgubgw.supabase.co",
-  supabasePublishableKey: "" // Paste your sb_publishable_ key between these quotes.
+  supabasePublishableKey: "sb_publishable_0jd-uya8yPy8fhFTDeV5oQ_IJ4rGVSN" // Paste your sb_publishable_ key between these quotes.
 };
 
 const authScreen = document.getElementById("auth-screen");
