@@ -14,7 +14,29 @@
   <script src="app.js" defer></script>
 </head>
 <body>
-  <div class="app-shell">
+  <section class="auth-screen" id="auth-screen">
+    <div class="auth-brand"><span class="brand-mark">A</span><span>ARVEX</span></div>
+    <div class="auth-card">
+      <p class="eyebrow">YOUR WORK. YOUR VALUE.</p>
+      <h1 id="auth-title">Welcome back</h1>
+      <p class="auth-subtitle" id="auth-subtitle">Sign in to your ARVEX workspace.</p>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="login-tab" type="button">Sign in</button>
+        <button class="auth-tab" id="signup-tab" type="button">Create account</button>
+      </div>
+      <form id="auth-form">
+        <label id="name-field" class="hidden-field">Full name<input id="full-name" type="text" autocomplete="name" placeholder="Your name"></label>
+        <label>Email address<input id="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+        <label>Password<input id="password" type="password" autocomplete="current-password" placeholder="At least 8 characters" minlength="8" required></label>
+        <button class="primary-button auth-submit" id="auth-submit" type="submit">Sign in</button>
+      </form>
+      <p class="auth-message" id="auth-message" role="status" aria-live="polite"></p>
+      <p class="auth-footnote">Your workspace is private. Never share your password with anyone.</p>
+    </div>
+    <p class="auth-footer">ARVEX · A product by ELHAM STUDIOS</p>
+  </section>
+
+  <div class="app-shell hidden" id="app-shell">
     <aside class="sidebar">
       <a class="brand" href="#" aria-label="ARVEX home"><span class="brand-mark">A</span><span>ARVEX</span></a>
       <div class="workspace-switch"><span class="workspace-dot"></span><span><small>WORKSPACE</small><strong>My workspace</strong></span><span class="chevron">⌄</span></div>
@@ -32,11 +54,11 @@
       <header class="topbar">
         <div class="mobile-brand"><span class="brand-mark">A</span> ARVEX</div>
         <div class="breadcrumb">Workspace <span>/</span> <strong>Overview</strong></div>
-        <div class="top-actions"><button class="icon-button" aria-label="Notifications">♧</button><div class="avatar">U</div></div>
+        <div class="top-actions"><span class="user-email" id="user-email"></span><button class="secondary-button signout-button" id="signout-button" type="button">Sign out</button><div class="avatar" id="user-avatar">U</div></div>
       </header>
 
       <section class="welcome-row">
-        <div><p class="eyebrow">MONDAY, YOUR BUSINESS AT A GLANCE</p><h1>Overview</h1><p class="subheading">Know what’s moving, what’s approved, and what still needs to be invoiced.</p></div>
+        <div><p class="eyebrow">YOUR BUSINESS AT A GLANCE</p><h1>Overview</h1><p class="subheading">Know what’s moving, what’s approved, and what still needs to be invoiced.</p></div>
         <button class="primary-button" id="add-work-button">＋ <span>Add extra work</span></button>
       </section>
 
