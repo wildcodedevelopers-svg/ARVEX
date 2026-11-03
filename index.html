@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090612">
+  <meta name="description" content="ARVEX — Track the work. Capture the value.">
+  <title>ARVEX | Track the work. Capture the value.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="ARVEX home"><span class="brand-mark">A</span><span>ARVEX</span></a>
+      <div class="workspace-switch"><span class="workspace-dot"></span><span><small>WORKSPACE</small><strong>My workspace</strong></span><span class="chevron">⌄</span></div>
+      <nav class="nav">
+        <a class="nav-link active" href="#overview"><span>◫</span> Overview</a>
+        <a class="nav-link" href="#clients"><span>♧</span> Clients</a>
+        <a class="nav-link" href="#projects"><span>▦</span> Projects</a>
+        <a class="nav-link" href="#extra-work"><span>＋</span> Extra work</a>
+        <a class="nav-link" href="#unbilled"><span>◷</span> Unbilled</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="help-mark">?</div><div><strong>Need a hand?</strong><small>Help & support</small></div></div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">A</span> ARVEX</div>
+        <div class="breadcrumb">Workspace <span>/</span> <strong>Overview</strong></div>
+        <div class="top-actions"><button class="icon-button" aria-label="Notifications">♧</button><div class="avatar">U</div></div>
+      </header>
+
+      <section class="welcome-row">
+        <div><p class="eyebrow">MONDAY, YOUR BUSINESS AT A GLANCE</p><h1>Overview</h1><p class="subheading">Know what’s moving, what’s approved, and what still needs to be invoiced.</p></div>
+        <button class="primary-button" id="add-work-button">＋ <span>Add extra work</span></button>
+      </section>
+
+      <section class="metric-grid" aria-label="Business summary">
+        <article class="metric-card"><div class="metric-top"><span>Tracked extra work</span><span class="metric-icon purple">↗</span></div><strong class="metric-value">—</strong><small>All recorded requests</small></article>
+        <article class="metric-card"><div class="metric-top"><span>Approved value</span><span class="metric-icon green">✓</span></div><strong class="metric-value">—</strong><small>Approved by clients</small></article>
+        <article class="metric-card"><div class="metric-top"><span>Pending approval</span><span class="metric-icon amber">◷</span></div><strong class="metric-value">—</strong><small>Awaiting a decision</small></article>
+        <article class="metric-card highlight-card"><div class="metric-top"><span>Approved but unbilled</span><span class="metric-icon pink">!</span></div><strong class="metric-value">—</strong><small>Work to follow up on</small></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel activity-panel"><div class="panel-heading"><div><h2>Recent activity</h2><p>Your latest extra-work updates</p></div><a href="#extra-work">View all <span>→</span></a></div><div class="empty-state"><div class="empty-icon">⌁</div><strong>Your activity will appear here</strong><p>Once you add clients and track extra work, you’ll see updates here.</p><button class="secondary-button" id="empty-add-button">＋ Add your first request</button></div></article>
+        <article class="panel attention-panel"><div class="panel-heading"><div><h2>Needs attention</h2><p>Items worth following up</p></div></div><div class="attention-empty"><span class="attention-check">✓</span><div><strong>You're all caught up</strong><p>Pending approvals and unbilled work will show here.</p></div></div></article>
+      </section>
+      <footer class="footer"><span>ARVEX <span class="footer-dot">·</span> A product by ELHAM STUDIOS</span><span>Track the work. Capture the value.</span></footer>
+    </main>
+  </div>
+
+  <dialog class="work-dialog" id="work-dialog">
+    <form method="dialog" class="dialog-card">
+      <button class="dialog-close" aria-label="Close">×</button>
+      <p class="eyebrow">REVENUE TRACKING</p><h2>Record extra work</h2>
+      <p class="subheading">This form will be connected to your workspace in the next build step.</p>
+      <label>Request title<input type="text" placeholder="e.g. Additional social media designs"></label>
+      <label>Estimated value<input type="number" min="0" step="0.01" placeholder="0.00"></label>
+      <label>Details<textarea rows="3" placeholder="Describe the additional work..."></textarea></label>
+      <button class="primary-button" type="button" id="demo-save-button">Save form preview</button>
+      <p class="form-note" id="form-note">Preview only — no data is saved yet.</p>
+    </form>
+  </dialog>
+</body>
+</html>
