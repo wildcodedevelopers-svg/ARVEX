@@ -15,6 +15,7 @@
   <script src="dashboard.js" defer></script>
   <script src="requests.js" defer></script>
   <script src="clients.js" defer></script>
+  <script src="projects.js" defer></script>
 </head>
 <body>
   <section class="auth-screen" id="auth-screen">
@@ -56,6 +57,7 @@
     <nav class="mobile-nav" aria-label="Main navigation">
       <a class="nav-link active" href="#overview"><span>◫</span><small>Overview</small></a>
       <a class="nav-link" href="#clients"><span>♧</span><small>Clients</small></a>
+      <a class="nav-link" href="#projects"><span>▦</span><small>Projects</small></a>
     </nav>
 
     <main class="main-content" id="overview">
@@ -90,6 +92,11 @@
         <div class="client-list" id="client-list"><div class="client-loading">Loading clients...</div></div>
       </section>
 
+      <section class="page-section hidden" id="projects-page">
+        <div class="page-heading"><div><p class="eyebrow">WORK, WITH CONTEXT</p><h1>Projects</h1><p class="subheading">Organise deliverables and agreed scope by client.</p></div><button class="primary-button" id="add-project-button" type="button">＋ Add project</button></div>
+        <div class="client-toolbar"><input id="project-search" type="search" placeholder="Search projects..." aria-label="Search projects"><span id="project-count">0 projects</span></div>
+        <div class="client-list" id="project-list"><div class="client-loading">Loading projects...</div></div>
+      </section>
       <footer class="footer"><span>ARVEX <span class="footer-dot">·</span> A product by ELHAM STUDIOS</span><span>Track the work. Capture the value.</span></footer>
     </main>
   </div>
@@ -122,5 +129,15 @@
       <p class="form-note" id="client-form-note">Client details are private to your workspace.</p>
     </form>
   </dialog>
+  <dialog class="work-dialog" id="project-dialog"><form method="dialog" class="dialog-card" id="project-form">
+    <button class="dialog-close" aria-label="Close" type="button" id="close-project-dialog">×</button><p class="eyebrow">PROJECT MANAGEMENT</p><h2 id="project-dialog-title">Add project</h2>
+    <label>Project name<input id="project-name" type="text" maxlength="160" required placeholder="e.g. Brand refresh"></label>
+    <label>Client<select id="project-client" required><option value="">Choose a client</option></select></label>
+    <label>Description<textarea id="project-description" rows="2" maxlength="2000" placeholder="What is this project about?"></textarea></label>
+    <label>Agreed scope<textarea id="project-scope" rows="3" maxlength="3000" placeholder="What was included in the original agreement?"></textarea></label>
+    <label>Status<select id="project-status"><option value="active">Active</option><option value="on_hold">On hold</option><option value="completed">Completed</option></select></label>
+    <label>Start date<input id="project-start" type="date"></label><label>Due date<input id="project-due" type="date"></label>
+    <button class="primary-button" id="save-project-button" type="button">Save project</button><p class="form-note" id="project-form-note">Projects are private to your workspace.</p>
+  </form></dialog>
 </body>
 </html>
