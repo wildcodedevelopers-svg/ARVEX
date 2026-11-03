@@ -13,6 +13,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js" defer></script>
   <script src="dashboard.js" defer></script>
+  <script src="requests.js" defer></script>
 </head>
 <body>
   <section class="auth-screen" id="auth-screen">
@@ -79,15 +80,17 @@
   </div>
 
   <dialog class="work-dialog" id="work-dialog">
-    <form method="dialog" class="dialog-card">
+    <form method="dialog" class="dialog-card" id="request-form">
       <button class="dialog-close" aria-label="Close">×</button>
       <p class="eyebrow">REVENUE TRACKING</p><h2>Record extra work</h2>
-      <p class="subheading">This form will be connected to your workspace in the next build step.</p>
-      <label>Request title<input type="text" placeholder="e.g. Additional social media designs"></label>
-      <label>Estimated value<input type="number" min="0" step="0.01" placeholder="0.00"></label>
-      <label>Details<textarea rows="3" placeholder="Describe the additional work..."></textarea></label>
-      <button class="primary-button" type="button" id="demo-save-button">Save form preview</button>
-      <p class="form-note" id="form-note">Preview only — no data is saved yet.</p>
+      <p class="subheading">Add the client, project, and extra work you need to track.</p>
+      <label>Client name<input id="request-client" type="text" maxlength="120" placeholder="e.g. Acme Studio" required></label>
+      <label>Project name<input id="request-project" type="text" maxlength="120" placeholder="e.g. Brand refresh" required></label>
+      <label>Request title<input id="request-title" type="text" maxlength="160" placeholder="e.g. Additional social media designs" required></label>
+      <label>Estimated value<input id="request-amount" type="number" min="0" step="0.01" placeholder="0.00" required></label>
+      <label>Details<textarea id="request-details" rows="3" maxlength="3000" placeholder="Describe the additional work..."></textarea></label>
+      <button class="primary-button" type="button" id="demo-save-button">Save extra work</button>
+      <p class="form-note" id="form-note">This saves the request to your private workspace.</p>
     </form>
   </dialog>
 </body>
