@@ -22,23 +22,25 @@
     $("client-form-note").style.color = error ? "#ff9baf" : "#c9a3f5";
   };
 
-  const setPage = (name) => {
-    const showClients = name === "clients";
-    overviewParts.forEach(node => node?.classList.toggle("hidden", showClients));
-    page.classList.toggle("hidden", !showClients);
-    document.querySelectorAll(".nav-link").forEach(link => {
-      link.classList.toggle("active", showClients ? link.getAttribute("href") === "#clients" : link.getAttribute("href") === "#overview");
-    });
+  const pageNames = ["clients", "projects", "extra-work", "unbilled"];
+  const pageElements = Object.fromEntries(pageNames.map(name => [name, document.getElementById(name + "-page")]).filter(([, el]) => el));
+  const setPage = name => {
+    const target = pageNames.includes(name) ? name : "overview";
+    const isOverview = target === "overview";
+    overviewParts.forEach(node => node?.classList.toggle("hidden", !isOverview));
+    Object.entries(pageElements).forEach(([key, el]) => el.classList.toggle("hidden", key !== target));
+    document.querySelectorAll(".nav-link").forEach(link => link.classList.toggle("active", link.getAttribute("href") === "#" + target));
     const breadcrumb = document.querySelector(".breadcrumb strong");
-    if (breadcrumb) breadcrumb.textContent = showClients ? "Clients" : "Overview";
-    if (showClients) loadClients();
+    if (breadcrumb) breadcrumb.textContent = target === "extra-work" ? "Extra work" : target.charAt(0).toUpperCase() + target.slice(1);
+    if (target === "clients") loadClients();
+    if (window.ARVEXPages?.[target]?.load) window.ARVEXPages[target].load();
   };
-
-  document.querySelectorAll('.nav-link[href="#clients"], .nav-link[href="#overview"]').forEach(link => {
+  document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
     link.addEventListener("click", event => {
+      const target = link.getAttribute("href").slice(1);
+      if (!["overview", ...pageNames].includes(target)) return;
       event.preventDefault();
-      const target = link.getAttribute("href") === "#clients" ? "clients" : "overview";
-      history.replaceState(null, "", target === "clients" ? "#clients" : "#overview");
+      history.replaceState(null, "", "#" + target);
       setPage(target);
     });
   });
@@ -226,6 +228,9 @@
   $("close-client-dialog").addEventListener("click", () => dialog.close());
   $("client-search").addEventListener("input", renderClients);
 
+  window.ARVEXPages = window.ARVEXPages || {};
+  window.ARVEXPages.clients = { load: loadClients };
+
   const waitForClient = () => {
     if (typeof supabaseClient !== "undefined" && supabaseClient) {
       supabaseClient.auth.onAuthStateChange((_event, session) => {
@@ -236,7 +241,8 @@
           setPage("overview");
         }
       });
-      if (window.location.hash === "#clients") setPage("clients");
+      const initial = window.location.hash.slice(1);
+      if (initial) setPage(initial);
     } else {
       window.setTimeout(waitForClient, 100);
     }
