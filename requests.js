@@ -5,6 +5,8 @@
   const dialog = document.getElementById("work-dialog");
   if (!button || !note || !dialog) return;
 
+  const requestForm = document.getElementById("request-form");
+  requestForm?.addEventListener("submit", (event) => event.preventDefault());
   const field = (id) => document.getElementById(id);
   const setNote = (message, error = false) => {
     note.textContent = message;
