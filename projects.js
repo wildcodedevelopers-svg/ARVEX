@@ -14,5 +14,14 @@
  const remove=async p=>{if(!confirm('Delete "'+p.name+'"? Projects linked to extra-work requests cannot be deleted.'))return;try{const id=await getWorkspace();const {error}=await supabaseClient.from("projects").delete().eq("id",p.id).eq("workspace_id",id);if(error)throw error;await load();}catch(e){alert(e.message||"Could not delete project. It may have linked extra-work requests.");}};
  $("add-project-button").addEventListener("click",openNew);$("save-project-button").addEventListener("click",save);$("close-project-dialog").addEventListener("click",()=>dialog.close());$("project-search").addEventListener("input",render);
  window.ARVEXPages=window.ARVEXPages||{};window.ARVEXPages.projects={load};
+ const openProjectsPage=()=>{
+   document.querySelectorAll(".welcome-row,.metric-grid,.content-grid,.main-content > .footer,#clients-page").forEach(el=>el.classList.add("hidden"));
+   page.classList.remove("hidden");
+   document.querySelectorAll(".nav-link").forEach(link=>link.classList.toggle("active",link.getAttribute("href")==="#projects"));
+   const crumb=document.querySelector(".breadcrumb strong");if(crumb)crumb.textContent="Projects";
+   load();
+ };
+ document.querySelectorAll('a.nav-link[href="#projects"]').forEach(link=>link.addEventListener("click",event=>{event.preventDefault();history.replaceState(null,"","#projects");openProjectsPage();}));
+ if(location.hash==="#projects")openProjectsPage();
  const wait=()=>{if(typeof supabaseClient!=="undefined"&&supabaseClient){supabaseClient.auth.onAuthStateChange((_event,session)=>{if(!session?.user){workspaceId=null;projects=[];clients=[];}});if(location.hash==="#projects")load();}else setTimeout(wait,100);};wait();
 })();
