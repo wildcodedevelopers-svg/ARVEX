@@ -14,6 +14,7 @@
   <script src="app.js" defer></script>
   <script src="dashboard.js" defer></script>
   <script src="requests.js" defer></script>
+  <script src="clients.js" defer></script>
 </head>
 <body>
   <section class="auth-screen" id="auth-screen">
@@ -75,6 +76,15 @@
         <article class="panel activity-panel"><div class="panel-heading"><div><h2>Recent activity</h2><p>Your latest extra-work updates</p></div><a href="#extra-work">View all <span>→</span></a></div><div class="empty-state"><div class="empty-icon">⌁</div><strong>Your activity will appear here</strong><p>Once you add clients and track extra work, you’ll see updates here.</p><button class="secondary-button" id="empty-add-button">＋ Add your first request</button></div></article>
         <article class="panel attention-panel"><div class="panel-heading"><div><h2>Needs attention</h2><p>Items worth following up</p></div></div><div class="attention-empty"><span class="attention-check">✓</span><div><strong>You're all caught up</strong><p>Pending approvals and unbilled work will show here.</p></div></div></article>
       </section>
+      <section class="page-section hidden" id="clients-page">
+        <div class="page-heading">
+          <div><p class="eyebrow">YOUR RELATIONSHIPS</p><h1>Clients</h1><p class="subheading">Keep client details organised in one place.</p></div>
+          <button class="primary-button" id="add-client-button" type="button">＋ Add client</button>
+        </div>
+        <div class="client-toolbar"><input id="client-search" type="search" placeholder="Search clients..." aria-label="Search clients"><span id="client-count">0 clients</span></div>
+        <div class="client-list" id="client-list"><div class="client-loading">Loading clients...</div></div>
+      </section>
+
       <footer class="footer"><span>ARVEX <span class="footer-dot">·</span> A product by ELHAM STUDIOS</span><span>Track the work. Capture the value.</span></footer>
     </main>
   </div>
@@ -91,6 +101,20 @@
       <label>Details<textarea id="request-details" rows="3" maxlength="3000" placeholder="Describe the additional work..."></textarea></label>
       <button class="primary-button" type="button" id="demo-save-button">Save extra work</button>
       <p class="form-note" id="form-note">This saves the request to your private workspace.</p>
+    </form>
+  </dialog>
+
+  <dialog class="work-dialog" id="client-dialog">
+    <form method="dialog" class="dialog-card" id="client-form">
+      <button class="dialog-close" aria-label="Close" type="button" id="close-client-dialog">×</button>
+      <p class="eyebrow">CLIENT MANAGEMENT</p><h2 id="client-dialog-title">Add client</h2>
+      <label>Client name<input id="client-name" type="text" maxlength="120" required placeholder="e.g. Alex Morgan"></label>
+      <label>Company name<input id="client-company" type="text" maxlength="160" placeholder="Optional"></label>
+      <label>Email<input id="client-email" type="email" maxlength="254" placeholder="Optional"></label>
+      <label>Phone<input id="client-phone" type="tel" maxlength="40" placeholder="Optional"></label>
+      <label>Notes<textarea id="client-notes" rows="3" maxlength="2000" placeholder="Optional notes..."></textarea></label>
+      <button class="primary-button" id="save-client-button" type="button">Save client</button>
+      <p class="form-note" id="client-form-note">Client details are private to your workspace.</p>
     </form>
   </dialog>
 </body>
